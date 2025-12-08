@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>How It Works | Fictr Esports</title>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+        <style>
+            :root {
+                --bg1: #0a0618;
+                --bg2: #130d2a;
+                --primary: #8b5cf6;
+                --primary-2: #7c3aed;
+                --accent: #c084fc;
+                --glass: rgba(255, 255, 255, 0.11);
+                --glass-deep: rgba(40, 16, 80, 0.28);
+                --radius: 17px;
+                --shadow-2: 0 30px 60px #8b5cf629, inset 0 1px 0 #fff2;
+            }
+
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                font-family: 'Inter', system-ui, sans-serif;
+                background: radial-gradient(900px at 10% -10%, #6d28d926 0, transparent 40%),
+                    radial-gradient(900px at 90% 0%, #7c3aed22 0, transparent 60%),
+                    linear-gradient(180deg, var(--bg1), var(--bg2));
+                color: #e9e7ff;
+                min-height: 100vh;
+                line-height: 1.6;
+                overflow-x: hidden;
+            }
+
+            .container {
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 0 22px;
+            }
+
+            /* HEADER */
+            header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 999;
+                background: rgba(14, 6, 32, .88);
+                border-bottom: 1px solid #fff1;
+                box-shadow: 0 8px 36px #6d28d92e;
+                width: 100vw;
+            }
+
+            nav {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 15px 0;
+                max-width: 1100px;
+                margin: 0 auto;
+            }
+
+            .nav-logo {
+                display: flex;
+                align-items: center;
+                gap: 14px;
+            }
+
+            .nav-logo img {
+                max-width: 180px;
+                width: 100%;
+                height: auto;
+                background: transparent;
+                object-fit: contain;
+                border-radius: 12px;
+                box-shadow: 0 4px 13px #7826fa28;
+            }
+
+            .nav-links {
+                list-style: none;
+                display: flex;
+                gap: 26px;
+            }
+
+            .nav-links a {
+                color: #b9b5d9;
+                text-decoration: none;
+                font-size: 15px;
+                padding: 8px 5px;
+                font-weight: 600;
+            }
+
+            .nav-links a:hover {
+                color: #fff;
+            }
+
+            .mobile-menu {
+                display: none;
+                font-size: 24px;
+                color: var(--primary);
+                cursor: pointer;
+                margin-left: 16px;
+                background: transparent;
+                border: none;
+            }
+
+            @media(max-width:800px) {
+                nav .nav-links {
+                    display: none;
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    top: 62px;
+                    background: rgba(17, 9, 34, 0.95);
+                    border-bottom: 1px solid #fff2;
+                    flex-direction: column;
+                    gap: 8px;
+                    padding: 17px 26px;
+                }
+
+                nav .nav-links.show {
+                    display: flex;
+                }
+
+                .mobile-menu {
+                    display: block;
+                }
+
+                .nav-logo img {
+                    max-width: 110px;
+                }
+            }
+
+            /* MAIN */
+            main {
+                padding-top: 110px;
+                padding-bottom: 50px;
+            }
+
+            .how-header h2 {
+                font-size: 2.08rem;
+                font-weight: 900;
+                letter-spacing: 0.2px;
+            }
+
+            .how-header p {
+                color: #d5ccfc;
+                margin-bottom: 3px;
+                font-size: 1.08rem;
+                text-align: left;
+            }
+
+            .steps-grid {
+                margin: 34px 0 22px 0;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                gap: 22px;
+            }
+
+            .step-card {
+                background: var(--glass);
+                border-radius: var(--radius);
+                padding: 30px 20px 24px 24px;
+                min-height: 124px;
+                box-shadow: var(--shadow-2);
+                border: 1.5px solid #b390ff3b;
+                position: relative;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                perspective: 600px;
+                animation: fadeInUp .6s cubic-bezier(.22, .9, .51, 1.14);
+                transition: box-shadow 0.23s, transform 0.22s;
+            }
+
+            .step-card:hover {
+                transform: translateY(-8px) rotateY(-8deg) scale(1.036);
+                box-shadow: 0 32px 66px #9b53fe3c;
+            }
+
+            .step-card .icon {
+                background: linear-gradient(120deg, var(--primary), var(--primary-2));
+                width: 43px;
+                height: 43px;
+                display: grid;
+                place-items: center;
+                border-radius: 50%;
+                color: #fff;
+                font-size: 1.45rem;
+                margin-bottom: 14px;
+                box-shadow: 0 4px 16px #7c3aed30;
+            }
+
+            .step-card .title {
+                font-weight: 700;
+                color: #e1dbf9;
+                margin-bottom: 7px;
+                font-size: 1.08rem;
+            }
+
+            .step-card .desc {
+                color: #d7d1f5;
+            }
+
+            /* Rules */
+            .rules-glass {
+                background: var(--glass-deep);
+                border-radius: var(--radius);
+                box-shadow: 0 6px 32px #7c3aed29;
+                padding: 25px 19px 19px 19px;
+                border: 1.7px solid #c084fc39;
+                margin-bottom: 24px;
+                margin-top: 22px;
+                animation: fadeInUp .8s cubic-bezier(.22, .9, .51, 1.14);
+            }
+
+            .rules-glass h4 {
+                margin-bottom: 11px;
+                color: #fff;
+            }
+
+            .rules-glass ul {
+                margin-left: 19px;
+                margin-bottom: 9px;
+            }
+
+            .rules-glass li {
+                padding-left: 1px;
+                margin-bottom: 6px;
+                color: #d1c7fa;
+            }
+
+            .rules-glass .buttons {
+                margin-top: 12px;
+            }
+
+            .rules-glass .rules-btn {
+                background: #0c081e;
+                color: #fff;
+                border-radius: 13px;
+                padding: 10px 20px;
+                border: none;
+                font-weight: 700;
+                font-size: 1rem;
+                margin-right: 12px;
+                cursor: pointer;
+                transition: .15s;
+                box-shadow: 0 4px 16px #9b53fe28;
+                border: 1.2px solid #c084fc52;
+            }
+
+            .rules-glass .rules-btn:hover {
+                background: #7c3aed;
+                color: #fff;
+            }
+
+            /* 3D Glass Footer */
+            footer {
+                background: transparent;
+                margin-top: 60px;
+                position: relative;
+                z-index: 2;
+            }
+
+            .footer-content {
+                max-width: 1100px;
+                margin: 0 auto 0 auto;
+                padding: 0 18px 22px 18px;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 32px;
+                background: rgba(40, 16, 80, 0.26);
+                border-radius: 28px;
+                box-shadow: 0 12px 52px #b587fa36, 0 2px 22px #a666fa26;
+                backdrop-filter: blur(10px) saturate(118%);
+                border: 1.8px solid #7c3aed33;
+                margin-bottom: 0;
+                position: relative;
+                top: -22px;
+                animation: glassPulse 5s infinite alternate;
+            }
+
+            @keyframes glassPulse {
+                0% {
+                    box-shadow: 0 12px 52px #b587fa36, 0 2px 22px #a666fa18;
+                }
+
+                100% {
+                    box-shadow: 0 18px 74px #a877ff48;
+                }
+            }
+
+            .footer-section h3 {
+                color: #fff;
+                margin-bottom: 11px;
+            }
+
+            .footer-section p,
+            .footer-section a {
+                color: #bfb8e7;
+                font-size: 1rem;
+                line-height: 1.45;
+            }
+
+            .footer-section a {
+                text-decoration: none;
+            }
+
+            .footer-section a:hover {
+                color: #fff;
+            }
+
+            .social-icons {
+                margin-top: 16px;
+                display: flex;
+                gap: 18px;
+            }
+
+            .social-icons a {
+                width: 44px;
+                height: 44px;
+                display: grid;
+                place-items: center;
+                background: linear-gradient(180deg, #8b5cf6, #7c3aed);
+                color: #fff;
+                border-radius: 50%;
+                border: 1.5px solid #fff2;
+                box-shadow: 0 8px 24px #c084fc2a;
+                font-size: 1.2rem;
+                transition: .15s;
+            }
+
+            .social-icons a:hover {
+                transform: translateY(-5px) scale(1.07);
+            }
+
+            .footer-bottom {
+                margin-top: 8px;
+                text-align: center;
+                color: #bebefc;
+            }
+
+            @media (max-width:700px) {
+                .footer-content {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- HEADER -->
+        <header>
+            <nav>
+                <div class="nav-logo">
+                    <img src="c:\Users\LOG IN\OneDrive\Pictures\New folder (2)\images\bglogo.png"
+                        alt="FictrEsports Logo"
+                        style="max-width:180px; width: 100%; height: auto; background: transparent; object-fit: contain;" />
+                </div>
+                <button class="mobile-menu" id="mobileMenu"><i class="fas fa-bars"></i></button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="Howitworks.html">How It Works</a></li>
+                    <li><a href="tournaments.html">Tournaments</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+
+                </ul>
+            </nav>
+        </header>
+        <!-- MAIN CONTENT -->
+        <main class="container">
+            <section class="how-header" style="margin-top:40px;">
+                <h2>How It Works</h2>
+                <p>Register → Join Tournament → Complete → Win</p>
+            </section>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <span class="icon"><i class="fas fa-user-plus"></i></span>
+                    <div class="title">Register</div>
+                    <div class="desc">Create or join a team and submit basic details.</div>
+                </div>
+                <div class="step-card">
+                    <span class="icon"><i class="fas fa-sign-in-alt"></i></span>
+                    <div class="title">Join</div>
+                    <div class="desc">Get your bracket placement and match schedule.</div>
+                </div>
+                <div class="step-card">
+                    <span class="icon"><i class="fas fa-play-circle"></i></span>
+                    <div class="title">Complete</div>
+                    <div class="desc">Play fair, follow rules, and advance through rounds.</div>
+                </div>
+                <div class="step-card">
+                    <span class="icon"><i class="fas fa-trophy"></i></span>
+                    <div class="title">Win</div>
+                    <div class="desc">Earn prizes, recognition, and spotlight features.</div>
+                </div>
+            </div>
+            <div class="rules-glass">
+                <h4>Tournament Rules</h4>
+                <ul>
+                    <li>✔ Verify team details and player IDs before match day. Mismatched info may lead to
+                        disqualification.</li>
+                    <li>✔ Be on time. No-shows beyond the grace period will be considered a forfeit.</li>
+                    <li>✔ Strictly no cheating, scripts, or third-party tools. Violations result in immediate ban.</li>
+                    <li>✔ Follow admin instructions in the lobby and report disputes with evidence
+                        (screenshots/recordings).</li>
+                    <li>✔ Respect opponents and staff. Toxic behavior or harassment is not tolerated.</li>
+                </ul>
+                <div class="buttons">
+                    <button class="rules-btn" onclick="location.href='index.html#tournaments'">View Tournaments</button>
+                    <button class="rules-btn" style="background:#181032;color:#f7c9f7;"
+                        onclick="alert('Contact support for issues!')">Report an Issue</button>
+                </div>
+            </div>
+        </main>
+        <!-- FOOTER 3D GLASS -->
+        <footer id="contact">
+            <div class="container footer-content">
+                <div class="footer-section">
+                    <h3>Fictr Esports</h3>
+                    <p>Organizing the future of Indian esports with competitive gaming events, tournaments, and player
+                        support across India.</p>
+
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="index.html">Home</a></p>
+                    <p><a href="about.html">About Us</a></p>
+                    <p><a href="Howitworks.html">How It Works</a></p>
+                    <p><a href="tournaments.html">Tournaments</a></p>
+                    <p><a href="contact.html">Contact</a></p>
+
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>Based in India</p>
+                    <p>Email: syedliyaqatsareer5@gmail.com</p>
+
+                    <p>Phone: +91 9797299517 </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Fictr Esports. All rights reserved.</p>
+            </div>
+        </footer>
+        <script>
+            // Mobile menu functionality
+            const mobileMenu = document.getElementById('mobileMenu');
+            const navLinks = document.getElementById('navLinks');
+            mobileMenu.addEventListener('click', () => {
+                navLinks.classList.toggle('show');
+                const icon = mobileMenu.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            });
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 800) {
+                        navLinks.classList.remove('show');
+                        mobileMenu.querySelector('i').className = 'fas fa-bars';
+                    }
+                });
+            });
+        </script>
+    </body>
+
+</html>
