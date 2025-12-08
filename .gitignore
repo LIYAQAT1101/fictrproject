@@ -1,0 +1,70 @@
+# Environment Variables & Secrets
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+.api_keys
+
+# IDE & Editor Files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+*.swp
+*.swo
+*~
+.vs/
+
+# Node Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Build & Output
+dist/
+build/
+*.min.js
+*.min.css
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# Sensitive Files
+*.psd
+*.sql
+*.sqlite
+*.db
+.credentials
+.aws/
+.ssh/
+private/
+secrets/
+config/
+
+# OS
+Thumbs.db
+.AppleDouble
+.LSOverride
+
+# Temporary Files
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Cache
+.cache/
+.parcel-cache
+.eslintcache
+.node_repl_history
+
+# Security: Never commit these
+credentials.json
+/config/master.key
+/config/secrets.yml
+config/database.yml
