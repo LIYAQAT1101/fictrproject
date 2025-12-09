@@ -1,156 +1,662 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - Fictr Esports</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-        
-        nav {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 1rem 2rem;
-            text-align: center;
-        }
-        
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 1rem;
-            font-weight: bold;
-        }
-        
-        nav a:hover {
-            color: #667eea;
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: 3rem auto;
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        h1 {
-            color: #667eea;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-        
-        h2 {
-            color: #764ba2;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        p {
-            margin-bottom: 1rem;
-            text-align: justify;
-        }
-        
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .feature-box {
-            background: #f5f5f5;
-            padding: 1.5rem;
-            border-radius: 8px;
-            border-left: 4px solid #667eea;
-        }
-        
-        .feature-box h3 {
-            color: #667eea;
-            margin-bottom: 0.5rem;
-        }
-        
-        footer {
-            text-align: center;
-            padding: 2rem;
-            color: white;
-            margin-top: 3rem;
-        }
-    </style>
-</head>
-<body>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="Howitworks.html">How It Works</a>
-        <a href="tournaments.html">Tournaments</a>
-        <a href="contact.html">Contact</a>
-    </nav>
-    
-    <div class="container">
-        <h1>About Fictr Esports</h1>
-        
-        <h2>Who We Are</h2>
-        <p>
-            Fictr Esports is a premier platform dedicated to revolutionizing the esports tournament experience. 
-            We bring together passionate gamers and competitive teams from around the world to compete, 
-            connect, and celebrate their love for gaming.
-        </p>
-        
-        <h2>Our Mission</h2>
-        <p>
-            Our mission is to democratize esports by creating accessible, fair, and exciting tournament 
-            opportunities for players of all skill levels. We believe that everyone should have the chance 
-            to compete and showcase their talents on a professional platform.
-        </p>
-        
-        <h2>What We Offer</h2>
-        <div class="features">
-            <div class="feature-box">
-                <h3>🎮 Tournament Management</h3>
-                <p>Streamlined tournament creation and management with real-time bracket tracking.</p>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>About | Fictr Esports</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+        <style>
+            body {
+                background: linear-gradient(135deg, #120e43 0%, #2b2b52 100%);
+                font-family: 'Inter', 'Roboto', sans-serif;
+                margin: 0;
+                padding: 0;
+            }
+
+            header {
+                position: fixed;
+                width: 100vw;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1000;
+                background: rgba(7, 5, 14, 0.85);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+            }
+
+            nav {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                max-width: 1100px;
+                margin: 0 auto;
+                padding: 14px 0;
+            }
+
+            .nav-logo img {
+                max-width: 180px;
+                width: 100%;
+                height: auto;
+                background: transparent;
+                object-fit: contain;
+                border-radius: 12px;
+                box-shadow: 0 4px 13px #7826fa28;
+            }
+
+            .mobile-menu {
+                display: none;
+                font-size: 24px;
+                color: #8b5cf6;
+                cursor: pointer;
+                margin-left: 16px;
+            }
+
+            .nav {
+                display: flex;
+                gap: 22px;
+                list-style: none;
+            }
+
+            .nav a {
+                color: #b9b5d9;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 1.07rem;
+                padding: 6px 8px;
+            }
+
+            .nav a:hover {
+                color: #fff;
+            }
+
+            @media(max-width:900px) {
+                nav .nav {
+                    display: none;
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    top: 65px;
+                    background: rgba(11, 7, 24, 0.96);
+                    padding: 18px 22px;
+                    flex-direction: column;
+                    gap: 8px;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                }
+
+                nav .nav.show {
+                    display: flex;
+                }
+
+                .mobile-menu {
+                    display: block;
+                }
+
+                .nav-logo img {
+                    max-width: 110px;
+                }
+            }
+
+            .about-section {
+                padding-top: 120px;
+                padding-bottom: 60px;
+                min-height: 100vh;
+            }
+
+            .about-header {
+                text-align: center;
+                font-size: clamp(28px, 3vw, 40px);
+                font-weight: 900;
+                margin-bottom: 14px;
+            }
+
+            .about-sub {
+                text-align: center;
+                color: #d8d2ff;
+                max-width: 700px;
+                margin: 0 auto 28px;
+                font-size: 1.13rem;
+            }
+
+            .about-content {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 28px;
+                align-items: start;
+                padding: 10px 0;
+            }
+
+            .panel {
+                background: rgba(255, 255, 255, 0.11);
+                border: 1px solid #c084fc55;
+                border-radius: 18px;
+                padding: 25px 20px 18px 20px;
+                color: #fff;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+                backdrop-filter: blur(12px) saturate(125%);
+                transition: transform .25s, box-shadow 0.22s;
+                min-height: 330px;
+                cursor: pointer;
+            }
+
+            .panel img {
+                width: 100%;
+                max-width: 100%;
+                height: 180px;
+                object-fit: cover;
+                display: block;
+                margin-bottom: 16px;
+                border-radius: 14px;
+                box-shadow: 0 8px 22px #a66bff35;
+                transition: box-shadow 0.18s;
+                cursor: pointer;
+            }
+
+            .panel:hover {
+                transform: translateY(-10px) scale(1.032) rotateY(-6deg);
+                box-shadow: 0 32px 80px #ac87ff3d;
+            }
+
+            .panel:hover img {
+                box-shadow: 0 30px 44px #7f47ed70;
+            }
+
+            .panel h3 {
+                margin-bottom: 9px;
+                font-size: 1.16rem;
+                color: #e3cdf6;
+            }
+
+            .panel p {
+                color: #e9e6ff;
+                font-size: 0.99rem;
+                line-height: 1.6;
+            }
+
+            @media (max-width: 900px) {
+                .about-content {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+
+                .panel {
+                    min-height: 280px;
+                }
+
+                .panel img {
+                    height: 140px;
+                }
+            }
+
+            @media (max-width: 700px) {
+                .about-content {
+                    grid-template-columns: 1fr;
+                    gap: 16px;
+                }
+
+                .panel {
+                    min-height: 200px;
+                }
+
+                .panel img {
+                    height: 90px;
+                }
+            }
+
+            .lightbox {
+                display: none;
+                position: fixed;
+                z-index: 9999;
+                inset: 0;
+                background: rgba(34, 18, 54, 0.93);
+                backdrop-filter: blur(12px);
+                align-items: center;
+                justify-content: center;
+            }
+
+            .lightbox.active {
+                display: flex;
+            }
+
+            .lightbox img {
+                max-width: 95vw;
+                max-height: 80vh;
+                border-radius: 18px;
+                box-shadow: 0 24px 88px #7c3aed45;
+                border: 2.5px solid #c084fc99;
+                animation: popIn .4s;
+                background: #181032;
+            }
+
+            @keyframes popIn {
+                from {
+                    transform: scale(.9) rotateY(-9deg);
+                }
+
+                to {
+                    transform: scale(1);
+                }
+            }
+
+            .lightbox-close {
+                position: absolute;
+                top: 22px;
+                right: 32px;
+                background: #7c3aed;
+                color: #fff;
+                font-size: 2.1rem;
+                border-radius: 50%;
+                border: none;
+                width: 44px;
+                height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                box-shadow: 0 6px 24px #a66bff3d;
+                opacity: 0.92;
+                transition: background .18s;
+            }
+
+            .lightbox-close:hover {
+                background: #c084fc;
+                color: #7919e5;
+            }
+
+            footer {
+                background: transparent;
+                margin-top: 60px;
+                position: relative;
+                z-index: 2;
+            }
+
+            .footer-content {
+                max-width: 1100px;
+                margin: 0 auto 0 auto;
+                padding: 0 18px 22px 18px;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 32px;
+                background: rgba(40, 16, 80, 0.26);
+                border-radius: 28px;
+                box-shadow: 0 12px 52px #b587fa36, 0 2px 22px #a666fa26;
+                backdrop-filter: blur(10px) saturate(118%);
+                border: 1.8px solid #7c3aed33;
+                margin-bottom: 0;
+                position: relative;
+                top: -22px;
+                animation: glassPulse 5s infinite alternate;
+            }
+
+            @keyframes glassPulse {
+                0% {
+                    box-shadow: 0 12px 52px #b587fa36, 0 2px 22px #a666fa18;
+                }
+
+                100% {
+                    box-shadow: 0 18px 74px #a877ff48;
+                }
+            }
+
+            .footer-section h3 {
+                color: #fff;
+                margin-bottom: 11px;
+            }
+
+            .footer-section p,
+            .footer-section a {
+                color: #bfb8e7;
+                font-size: 1rem;
+                line-height: 1.45;
+                margin: 0;
+            }
+
+            .footer-section a {
+                text-decoration: none;
+            }
+
+            .footer-section a:hover {
+                color: #fff;
+            }
+
+            .social-icons {
+                margin-top: 16px;
+                display: flex;
+                gap: 18px;
+            }
+
+            .social-icons a {
+                width: 44px;
+                height: 44px;
+                display: grid;
+                place-items: center;
+                background: linear-gradient(180deg, #8b5cf6, #7c3aed);
+                color: #fff;
+                border-radius: 50%;
+                border: 1.5px solid #fff2;
+                box-shadow: 0 8px 24px #c084fc2a;
+                font-size: 1.2rem;
+                transition: .15s;
+            }
+
+            .social-icons a:hover {
+                transform: translateY(-5px) scale(1.07);
+            }
+
+            .footer-bottom {
+                margin-top: 8px;
+                text-align: center;
+                color: #bebefc;
+            }
+
+            @media (max-width:700px) {
+                .footer-content {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            /* --- CHATBOT WIDGET --- */
+            .chatbot-widget {
+                position: fixed;
+                right: 30px;
+                bottom: 30px;
+                z-index: 24500;
+                width: 320px;
+                background: rgba(30, 18, 74, 0.97);
+                border-radius: 19px 19px 12px 12px;
+                box-shadow: 0 6px 38px #793aed52;
+                border: 2px solid #874fff38;
+                font-family: 'Inter', sans-serif;
+                overflow: hidden;
+            }
+
+            .chatbot-header {
+                background: linear-gradient(90deg, #874fff 70%, #a685fa 140%);
+                color: #fff;
+                font-weight: 700;
+                font-size: 1.08em;
+                letter-spacing: 1px;
+                padding: 13px 18px;
+                cursor: pointer;
+                user-select: none;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            #fictrChatToggle {
+                float: right;
+                font-size: 1.1em;
+                margin-left: 8px;
+            }
+
+            .chatbot-body {
+                padding: 19px 16px 10px 16px;
+                max-height: 260px;
+                overflow-y: auto;
+                background: none;
+                display: flex;
+                flex-direction: column;
+                gap: 13px;
+                font-size: 0.99em;
+            }
+
+            .chatbot-msg {
+                background: #241c43;
+                color: #ede6ff;
+                padding: 10px 13px;
+                border-radius: 12px;
+                max-width: 93%;
+                word-break: break-word;
+            }
+
+            .chatbot-msg-bot {
+                align-self: flex-start;
+                background: #322a65;
+            }
+
+            .chatbot-options {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                margin: 7px 0 0 0;
+            }
+
+            .chatbot-option-btn {
+                background: #7c3aed;
+                border: none;
+                color: #fff;
+                border-radius: 9px;
+                padding: 10px 13px;
+                font-size: 1em;
+                cursor: pointer;
+                text-align: left;
+                transition: background 0.18s;
+            }
+
+            .chatbot-option-btn:hover {
+                background: #b084f9;
+            }
+
+            @media(max-width:450px) {
+                .chatbot-widget {
+                    width: 96vw;
+                    right: 2vw;
+                    left: 2vw;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <nav>
+                <div class="nav-logo">
+                    <img src="c:\Users\LOG IN\OneDrive\Pictures\New folder (2)\images\bglogo.png"
+                        alt="FictrEsports Logo" />
+                </div>
+                <div class="mobile-menu" id="mobileMenu"><i class="fas fa-bars"></i></div>
+                <ul class="nav" id="navLinks">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="Howitworks.html">How It Works</a></li>
+                    <li><a href="tournaments.html">Tournaments</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+
+                </ul>
+            </nav>
+        </header>
+        <section class="about-section" id="about">
+            <h2 class="about-header">About Fictr</h2>
+            <p class="about-sub">
+                Fictr organizes competitive esports events, supports players and teams, and creates opportunities for
+                gamers across India.
+            </p>
+            <div class="about-content">
+                <div class="panel">
+                    <img src="c:\Users\LOG IN\OneDrive\Pictures\New folder (2)\images\ourmission.jpg"
+                        alt="Gaming Arena" />
+                    <h3>Our Mission</h3>
+                    <p>We're committed to growing India's esports ecosystem by creating accessible tournaments,
+                        cultivating upcoming talent, and partnering with stakeholders to deliver high-quality
+                        competitive experiences.<br>Fictr promotes fair play and long-term player development.</p>
+                </div>
+                <div class="panel">
+                    <img src="c:\Users\LOG IN\OneDrive\Pictures\New folder (2)\images\our apporache.jpg"
+                        alt="Team Planning" />
+                    <h3>Our Approach</h3>
+                    <p>Transparent, community-first formats. Admin support and moderation for every tournament, plus
+                        special opportunities for regional players.</p>
+                </div>
+                <div class="panel">
+                    <img src="c:\Users\LOG IN\OneDrive\Pictures\New folder (2)\images\highlights.jpg"
+                        alt="Showcase Event" />
+                    <h3>Highlights</h3>
+                    <p>Showcase & media exposure for talented teams, fair play systems, and real growth for grassroots
+                        to flagship-level esports.</p>
+                </div>
             </div>
-            <div class="feature-box">
-                <h3>👥 Community Building</h3>
-                <p>Connect with thousands of gamers and team up with like-minded players.</p>
-            </div>
-            <div class="feature-box">
-                <h3>🏆 Professional Experience</h3>
-                <p>Enterprise-level tournaments with prize pools and sponsorship opportunities.</p>
-            </div>
-            <div class="feature-box">
-                <h3>📊 Analytics & Stats</h3>
-                <p>Track your performance with detailed statistics and leaderboards.</p>
-            </div>
+        </section>
+        <!-- Lightbox Zoom for Panel Images -->
+        <div class="lightbox" id="lightbox">
+            <button class="lightbox-close" id="lightboxClose">&times;</button>
+            <img id="lightboxImg" src="" alt="Zoomed image" />
         </div>
-        
-        <h2>Why Choose Fictr Esports?</h2>
-        <p>
-            We provide more than just a tournament platform. Fictr Esports is a complete ecosystem designed 
-            to support player growth, team development, and community engagement. With our cutting-edge technology 
-            and dedicated support team, we ensure every tournament runs smoothly and professionally.
-        </p>
-        
-        <h2>Get Involved</h2>
-        <p>
-            Whether you're a casual gamer looking to compete or a professional team seeking the next big tournament, 
-            Fictr Esports has something for you. Join our community today and be part of the esports revolution!
-        </p>
-    </div>
-    
-    <footer>
-        <p>&copy; 2025 Fictr Esports. All rights reserved.</p>
-    </footer>
-</body>
+        <!-- FOOTER -->
+        <footer id="contact">
+            <div class="container footer-content">
+                <div class="footer-section">
+                    <h3>Fictr Esports</h3>
+                    <p>Organizing the future of Indian esports with competitive gaming events, tournaments, and player
+                        support across India.</p>
+
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="index.html">Home</a></p>
+                    <p><a href="about.html">About Us</a></p>
+                    <p><a href="Howitworks.html">How It Works</a></p>
+                    <p><a href="tournaments.html">Tournaments</a></p>
+                    <p><a href="contact.html">Contact</a></p>
+
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>Based in India</p>
+                    <p>Email: syedliyaqatsareer5@gmail.com.com</p>
+                    <p>Phone: +91 9797299517 </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Fictr Esports. All rights reserved.</p>
+            </div>
+        </footer>
+        <!-- CHATBOT WIDGET -->
+        <div id="fictrChatbot" class="chatbot-widget">
+            <div class="chatbot-header" onclick="toggleChatbot()">Fictr Esports Bot <span
+                    id="fictrChatToggle">&#9650;</span></div>
+            <div class="chatbot-body" id="chatbotBody"></div>
+        </div>
+        <script>
+            // Navbar mobile menu toggle
+            const mobileMenu = document.getElementById('mobileMenu');
+            const navLinks = document.getElementById('navLinks');
+            mobileMenu.addEventListener('click', () => {
+                navLinks.classList.toggle('show');
+                const icon = mobileMenu.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            });
+            // Auto close mobile menu after link tap
+            document.querySelectorAll('.nav a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 900) {
+                        navLinks.classList.remove('show');
+                        mobileMenu.querySelector('i').className = 'fas fa-bars';
+                    }
+                });
+            });
+            // Lightbox zoom for images
+            document.querySelectorAll('.panel img').forEach(img => {
+                img.addEventListener('click', function () {
+                    const lightbox = document.getElementById('lightbox');
+                    const lightboxImg = document.getElementById('lightboxImg');
+                    lightboxImg.src = img.src;
+                    lightbox.classList.add('active');
+                });
+            });
+            document.getElementById('lightboxClose').onclick = function () {
+                document.getElementById('lightbox').classList.remove('active');
+            };
+            document.getElementById('lightbox').onclick = function (e) {
+                if (e.target === this) { this.classList.remove('active'); }
+            };
+            // --- CHATBOT ---
+            let chatbotOpen = true;
+            function toggleChatbot() {
+                chatbotOpen = !chatbotOpen;
+                let body = document.getElementById('chatbotBody');
+                let toggle = document.getElementById('fictrChatToggle');
+                if (chatbotOpen) {
+                    body.style.display = 'flex'; toggle.innerHTML = '&#9650;';
+                } else {
+                    body.style.display = 'none'; toggle.innerHTML = '&#9660;';
+                }
+            }
+            // Option-based chatbot content
+            const botQA = [
+                { q: "Who are creates this website ?", a: "Fictr Esports was founded by <b>Syed Liyaqat</b> ." },
+                { q: "What is Fictr Esports?", a: "Fictr Esports is an Indian platform for organizing online and offline gaming tournaments, professional events, and esports learning." },
+                { q: "How can I join a tournament?", a: "Just visit our Tournaments page, choose your game, and follow the step-by-step instructions to register your team or yourself." },
+                { q: "How can I contact Fictr Esports?", a: "You can email us at <b>fictr.syedliyaqatsareer5@gmail.com</b> or call <b>+91 9797299517</b>." },
+                { q: "What are the top esports games?", a: "Our tournaments cover BGMI, Valorant, CS:GO, Free Fire, and popular Indian and global esports games." },
+                { q: "How do I become a pro player?", a: "Practice regularly, learn from pro streams, review your gameplay, and join as many tournaments as possible to gain experience and exposure!" },
+                { q: "Show more options", a: ["Can I work as an organizer?", "What age do I need to play?", "How do I get updates or news?"] }
+            ];
+            const botExtraQA = [
+                { q: "Can I work as an organizer?", a: "Yes! Fill out our contact form or email us if you'd like to organize a tournament or event with Fictr Esports." },
+                { q: "What age do I need to play?", a: "Most tournaments require players to be age 16+ for competitive play. Always check event rules for details." },
+                { q: "How do I get updates or news?", a: "Follow our <a href='https://www.instagram.com/scaler_official/' target='_blank'>Instagram</a> or check our announcements page for the latest news and events." }
+            ];
+            function showBotWelcome() {
+                const body = document.getElementById('chatbotBody');
+                body.innerHTML = '';
+                addBotMsg("👋 Hi! I’m Fictr Esports Bot. Choose a question:");
+                showOptions(botQA);
+            }
+            function addBotMsg(txt) {
+                const msg = document.createElement('div');
+                msg.className = 'chatbot-msg chatbot-msg-bot';
+                msg.innerHTML = txt;
+                document.getElementById('chatbotBody').appendChild(msg);
+                document.getElementById('chatbotBody').scrollTop = 10000;
+            }
+            function addUserMsg(txt) {
+                const msg = document.createElement('div');
+                msg.className = 'chatbot-msg chatbot-msg-user';
+                msg.innerText = txt;
+                document.getElementById('chatbotBody').appendChild(msg);
+                document.getElementById('chatbotBody').scrollTop = 10000;
+            }
+            function showOptions(optArr) {
+                let oldOpt = document.getElementById('botOptions');
+                if (oldOpt) oldOpt.remove();
+                let optDiv = document.createElement('div');
+                optDiv.className = 'chatbot-options';
+                optDiv.id = "botOptions";
+                optArr.forEach(obj => {
+                    let btn = document.createElement('button');
+                    btn.className = 'chatbot-option-btn';
+                    btn.innerText = obj.q;
+                    btn.onclick = function () { userSelected(obj.q); };
+                    optDiv.appendChild(btn);
+                });
+                document.getElementById('chatbotBody').appendChild(optDiv);
+                document.getElementById('chatbotBody').scrollTop = 10000;
+            }
+            function userSelected(txt) {
+                addUserMsg(txt);
+                let oldOpt = document.getElementById('botOptions');
+                if (oldOpt) oldOpt.remove();
+                let ans = botQA.find(o => o.q === txt);
+                if (ans) {
+                    if (Array.isArray(ans.a)) {
+                        showOptions(ans.a.map(q => ({ q })));
+                        return;
+                    } else {
+                        addBotMsg(ans.a);
+                        setTimeout(() => showOptions(botQA), 900);
+                        return;
+                    }
+                }
+                let ans2 = botExtraQA.find(o => o.q === txt);
+                if (ans2) {
+                    addBotMsg(ans2.a);
+                    setTimeout(() => showOptions(botQA), 900);
+                }
+            }
+            showBotWelcome();
+        </script>
+    </body>
+
 </html>
