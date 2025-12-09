@@ -1,239 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Fictr Esports</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background: linear-gradient(135deg, #120e43 0%, #2b2b52 100%);
-            font-family: 'Roboto', sans-serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(180deg, rgba(11, 7, 24, .90), rgba(11, 7, 24, .70));
-            z-index: 1000;
-            padding: 15px 0;
-            box-shadow: 0 8px 24px #52268d23;
-        }
-        nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        .nav-logo img { height: 40px; width: auto; }
-        .nav-links { list-style: none; display: flex; gap: 30px; }
-        .nav-links a { color: #e9e7ff; text-decoration: none; font-weight: 600; }
-        .nav-links a:hover { color: #fff; }
-        main {
-            flex: 1;
-            margin-top: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        .contact-container {
-            max-width: 500px;
-            width: 100%;
-            background: rgba(18, 14, 67, 0.9);
-            border-radius: 20px;
-            padding: 40px 30px;
-            box-shadow: 0 8px 32px rgba(40, 100, 200, 0.2);
-            border: 1px solid rgba(139, 92, 246, 0.3);
-        }
-        .contact-title {
-            color: #fff;
-            font-size: 2.2rem;
-            margin-bottom: 30px;
-            font-weight: 700;
-            text-align: center;
-            background: linear-gradient(90deg, #fff, #c084fc);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        .info-block {
-            text-align: left;
-            margin-bottom: 25px;
-            color: #e4e6fb;
-            font-size: 1rem;
-            line-height: 1.8;
-        }
-        .info-block strong { color: #c084fc; }
-        .contact-form {
-            margin-top: 30px;
-        }
-        .form-group {
-            margin-bottom: 20px;
-            display: flex;
-            flex-direction: column;
-        }
-        .form-group label {
-            color: #c084fc;
-            font-weight: 600;
-            margin-bottom: 8px;
-            font-size: 0.95rem;
-        }
-        .form-group input,
-        .form-group textarea {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1.5px solid #8b5cf6;
-            border-radius: 8px;
-            padding: 12px 15px;
-            color: #e4e6fb;
-            font-family: 'Roboto', sans-serif;
-            font-size: 0.95rem;
-            transition: 0.3s;
-        }
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            background: rgba(255, 255, 255, 0.15);
-            border-color: #c084fc;
-            box-shadow: 0 0 10px #8b5cf638;
-        }
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-        .submit-btn {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(90deg, #8b5cf6, #c084fc);
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 4px 15px #8b5cf638;
-        }
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px #8b5cf650;
-        }
-        footer {
-            background: #0a0618;
-            padding: 40px 0;
-            border-top: 1px solid #8b5cf633;
-        }
-        .footer-content {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            padding: 0 20px;
-        }
-        .footer-section h3 {
-            color: #fff;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-        .footer-section p, .footer-section a {
-            color: #bfb8e7;
-            text-decoration: none;
-            font-size: 0.95rem;
-            margin-bottom: 8px;
-        }
-        .footer-section a:hover { color: #fff; }
-        .footer-bottom {
-            text-align: center;
-            margin-top: 20px;
-            color: #bebefc;
-            padding-top: 20px;
-            border-top: 1px solid #8b5cf633;
-            font-size: 0.9rem;
-        }
-        @media (max-width: 700px) {
-            header { padding: 10px 0; }
-            .nav-links { gap: 15px; }
-            main { margin-top: 70px; }
-            .contact-container { padding: 30px 20px; }
-            .contact-title { font-size: 1.8rem; }
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <nav>
-            <div class="nav-logo">
-                <img src="./images/bglogo.png" alt="Fictr Logo">
-            </div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="Howitworks.html">How It Works</a></li>
-                <li><a href="tournaments.html">Tournaments</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Contact Us | Fictr</title>
+        <link rel="stylesheet" href="styles.css">
+        <style>
+            body {
+                background: linear-gradient(135deg, #120e43 0%, #2b2b52 100%);
+                font-family: 'Roboto', sans-serif;
+                margin: 0;
+                padding: 0;
+            }
+
+            .contact-container {
+                max-width: 450px;
+                margin: 100px auto 40px auto;
+                background: rgba(255, 255, 255, 0.12);
+                border-radius: 24px;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+                padding: 32px 40px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                perspective: 1200px;
+                transition: box-shadow 0.3s;
+            }
+
+            .contact-container:hover {
+                box-shadow: 0 4px 36px rgba(40, 80, 220, 0.30), 0 0px 10px rgba(0, 20, 128, 0.14);
+                transform: rotateY(3deg) scale(1.03);
+            }
+
+            .contact-title {
+                color: #fff;
+                font-size: 2rem;
+                margin-bottom: 24px;
+                font-weight: 700;
+                text-shadow: 0 2px 8px #2b2b52;
+            }
+
+            .info-block {
+                text-align: left;
+                margin-bottom: 25px;
+                color: #e4e6fb;
+                font-size: 1rem;
+            }
+
+            /* Style for iframe */
+            .google-form {
+                width: 100%;
+                min-height: 520px;
+                border: none;
+                margin-bottom: 18px;
+                border-radius: 8px;
+                box-shadow: 0 2px 8px rgba(40, 80, 220, 0.07);
+            }
+
+            /* Footer Styles */
+            footer {
+                width: 100%;
+                background: #120e43;
+                padding: 40px 0;
+                color: #fff;
+                text-align: center;
+            }
+
+            .footer-content {
+                margin: 0 auto;
+                max-width: 1160px;
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+            }
+
+            .footer-section {
+                margin: 16px;
+            }
+
+            .footer-section a {
+                color: #e4e6fb;
+                text-decoration: none;
+                margin-right: 16px;
+            }
+
+            @media (max-width: 700px) {
+                .contact-container {
+                    padding: 20px 8px;
+                }
+
+                .footer-content {
+                    flex-direction: column;
+                    align-items: center;
+                }
+            }
+
+            /* Animation for footer icons */
+            .footer-icons svg {
+                transition: transform 0.25s cubic-bezier(.45, .44, 0, 1.4);
+            }
+
+            .footer-icons svg:hover {
+                transform: scale(1.19) rotate(-6deg);
+            }
+        </style>
+    </head>
+
+    <body>
         <div class="contact-container">
-            <h1 class="contact-title">Get In Touch</h1>
+            <div class="contact-title">Contact Us</div>
             <div class="info-block">
-                <strong>📧 Email:</strong> syedliyaqatsareer5@gmail.com<br>
-                <strong>📱 Phone:</strong> +91 9797299517<br>
-                <strong>📍 Location:</strong> Jammu & Kashmir, India
+                <strong>Email:</strong> syedliyaqatsareer5@gmail.com<br>
+                <strong>Phone:</strong> +91 9797299517<br>
+                <strong>Office:</strong> Jammu and Kashmir, India
             </div>
-            <form class="contact-form">
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+            <!-- Embed Google Form -->
+            <iframe src="https://wa.link/ktuxrf" width="100%" height="520" frameborder="0" marginheight="0"
+                marginwidth="0">Loading…</iframe>
+            <footer>
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <strong>Fictr</strong> — Future of Indian esports<br>
+                        Organizing tournaments & esports events.
+                    </div>
+                    <div class="footer-section">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About</a>
+                        <a href="howitworks.html">How It Works</a>
+                        <a href="tournaments.html">Tournaments</a>
+
+                    </div>
+
+
                 </div>
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                <div style="margin-top:24px; font-size: 0.95em;">
+                    &copy; 2025 Fictr. All rights reserved.
                 </div>
-                <div class="form-group">
-                    <label for="subject">Subject</label>
-                    <input type="text" id="subject" name="subject" placeholder="How can we help?" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" placeholder="Your message here..." required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Send Message</button>
-            </form>
-        </div>
-    </main>
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Fictr Esports</h3>
-                <p>Organizing the future of Indian esports with competitive gaming events and player support.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <p><a href="index.html">Home</a></p>
-                <p><a href="about.html">About Us</a></p>
-                <p><a href="Howitworks.html">How It Works</a></p>
-                <p><a href="tournaments.html">Tournaments</a></p>
-            </div>
-            <div class="footer-section">
-                <h3>Follow Us</h3>
-                <p><a href="https://instagram.com/fictrofficial" target="_blank">Instagram</a></p>
-                <p><a href="https://youtube.com/fictr" target="_blank">YouTube</a></p>
-                <p><a href="https://discord.gg/fictr" target="_blank">Discord</a></p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Fictr Esports. All rights reserved.</p>
-        </div>
-    </footer>
-</body>
+            </footer>
+            <!-- Animation JS for 3D (optional) -->
+            <script>
+                // Simple 3D tilt effect
+
+                document.querySelector('.contact-container').addEventListener('mouseleave', function () {
+                    this.style.transform = '';
+                });
+            </script>
+    </body>
+
 </html>
