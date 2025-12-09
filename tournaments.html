@@ -1,254 +1,603 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fictr Esports - Tournaments</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --bg-dark: #0a0618;
-            --primary: #8b5cf6;
-            --accent: #c084fc;
-            --text: #e9e7ff;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background: linear-gradient(180deg, #0a0618, #130d2a);
-            color: var(--text);
-            font-family: 'Inter', system-ui, sans-serif;
-            min-height: 100vh;
-        }
-        .container { max-width: 1140px; margin: 0 auto; padding: 0 18px; }
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(180deg, rgba(11, 7, 24, .80), rgba(11, 7, 24, .52));
-            z-index: 1000;
-            box-shadow: 0 8px 24px #52268d23;
-        }
-        nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 15px 0;
-            max-width: 1140px;
-            margin: 0 auto;
-        }
-        .nav-logo { display: flex; align-items: center; gap: 13px; }
-        .nav-logo img { height: 42px; width: auto; max-width: 172px; }
-        .nav-links { list-style: none; display: flex; gap: 32px; }
-        .nav-links a { color: var(--text); text-decoration: none; font-weight: 700; padding: 7px; }
-        .nav-links a:hover { color: #fff; }
-        main { padding-top: 110px; padding-bottom: 50px; }
-        .tournament-hero {
-            text-align: center;
-            margin: 0;
-            padding: 88px 0 30px 0;
-        }
-        .tournament-hero h2 {
-            font-size: 2.6rem;
-            font-weight: 900;
-            background: linear-gradient(90deg, #fff, var(--accent));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 12px;
-        }
-        .tournament-hero p {
-            max-width: 650px;
-            margin: 10px auto 16px;
-            color: #e5dcfc;
-            font-size: 1.21rem;
-        }
-        .tournament-date {
-            color: #ffb347;
-            font-size: 1.18rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        .main-glass {
-            background: rgba(255, 255, 255, 0.13);
-            border: 1.8px solid #9b6dfd4c;
-            border-radius: 24px;
-            padding: 34px 20px;
-            max-width: 960px;
-            margin: 34px auto 0;
-        }
-        .main-glass h3 {
-            font-weight: 900;
-            font-size: 1.45rem;
-            background: linear-gradient(90deg, #fff, var(--accent));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 14px;
-        }
-        .main-glass ul {
-            margin: 12px 0 19px 0;
-            padding-left: 18px;
-            color: #e5e1fc;
-            font-size: 1.05rem;
-        }
-        .main-glass li { margin-bottom: 8px; }
-        .register-btn {
-            margin-top: 16px;
-            padding: 14px 32px;
-            border-radius: 23px;
-            font-size: 1.18rem;
-            background: linear-gradient(90deg, #7c3aed, #8b5cf6);
-            color: #fff;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 7px 18px #7c3aed35;
-            transition: 0.16s;
-        }
-        .register-btn:hover {
-            box-shadow: 0 22px 38px #8b5cf669;
-        }
-        .rules-section {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 26px;
-            margin: 38px auto 0 auto;
-            max-width: 1000px;
-        }
-        .rule-card {
-            background: rgba(255, 255, 255, 0.09);
-            border: 1.3px solid #bfa4fc2a;
-            border-radius: 18px;
-            padding: 21px 18px;
-            min-width: 220px;
-            max-width: 340px;
-            transition: 0.22s;
-        }
-        .rule-card:hover {
-            transform: translateY(-7px);
-            box-shadow: 0 18px 36px #7c3aed38;
-        }
-        .rule-card h5 { margin-bottom: 9px; color: #faf7ff; font-size: 1.13rem; }
-        .rule-card ul { margin: 0; padding-left: 21px; }
-        footer {
-            background: transparent;
-            margin-top: 60px;
-            padding: 40px 0;
-        }
-        .footer-content {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 32px;
-            background: rgba(40, 16, 80, 0.26);
-            border-radius: 28px;
-            padding: 22px 18px;
-            border: 1.8px solid #7c3aed33;
-        }
-        .footer-section h3 { color: #fff; margin-bottom: 11px; }
-        .footer-section a { color: #bfb8e7; text-decoration: none; }
-        .footer-section a:hover { color: #fff; }
-        .footer-bottom { text-align: center; color: #bebefc; margin-top: 8px; }
-        @media (max-width: 700px) {
-            .nav-links { gap: 17px; }
-            .tournament-hero h2 { font-size: 1.8rem; }
-            .footer-content { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <nav class="container">
-            <div class="nav-logo">
-                <img src="./images/bglogo.png" alt="Fictr Logo">
-            </div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="Howitworks.html">How It Works</a></li>
-                <li><a href="tournaments.html">Tournaments</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>FictrEsports - All India Tournament</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+        <style>
+            :root {
+                --bg-dark: #0a0618;
+                --bg-gradient: linear-gradient(180deg, #0a0618, #130d2a);
+                --glass: rgba(255, 255, 255, 0.13);
+                --primary: #8b5cf6;
+                --primary-2: #7c3aed;
+                --accent: #c084fc;
+                --text: #e9e7ff;
+                --radius: 18px;
+                --shadow: 0 16px 60px #7c3aed27, inset 0 1px 0 #fff1;
+            }
+
+            html,
+            body {
+                min-height: 100%;
+                background:
+                    radial-gradient(1200px 900px at 10% 0%, #8b5cf633 0, transparent 64%),
+                    radial-gradient(800px 600px at 110% 34%, #c084fc22 0, transparent 55%),
+                    var(--bg-gradient);
+                color: var(--text);
+                font-family: 'Inter', system-ui, sans-serif;
+                margin: 0;
+                padding: 0;
+            }
+
+            .container {
+                max-width: 1140px;
+                margin: 0 auto;
+                padding: 0 18px;
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                background: linear-gradient(180deg, rgba(11, 7, 24, .80), rgba(11, 7, 24, .52));
+                z-index: 1000;
+                box-shadow: 0 8px 24px #52268d23;
+            }
+
+            nav {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 15px 0;
+            }
+
+            .nav-logo {
+                display: flex;
+                align-items: center;
+                gap: 13px;
+            }
+
+            .logo-img {
+                height: 42px;
+                width: auto;
+                max-width: 172px;
+                background: transparent;
+                object-fit: contain;
+            }
+
+            .nav-links {
+                list-style: none;
+                display: flex;
+                gap: 32px;
+            }
+
+            .nav-links a {
+                color: var(--text);
+                font-weight: 700;
+                font-size: 1rem;
+                padding: 7px 7px;
+                border-radius: 7px;
+                transition: .17s;
+            }
+
+            .nav-links a:hover {
+                color: #fff;
+                background: linear-gradient(92deg, #7c3aed36, #c084fc17);
+            }
+
+            .mobile-menu {
+                display: none;
+                font-size: 2.2rem;
+                color: #c08fcf;
+                margin-left: 14px;
+                cursor: pointer;
+            }
+
+            @media(max-width:900px) {
+                .nav-links {
+                    gap: 17px;
+                }
+            }
+
+            @media(max-width:700px) {
+                .nav-links {
+                    display: none;
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    top: 61px;
+                    background: linear-gradient(97deg, #120e43 70%, #4b268d 100%);
+                    flex-direction: column;
+                    padding: 22px 15px;
+                }
+
+                .nav-links.active {
+                    display: flex;
+                }
+
+                .logo-img {
+                    height: 27px;
+                }
+
+                .mobile-menu {
+                    display: block;
+                }
+
+                nav {
+                    padding: 8px 0;
+                }
+            }
+
+            .header-space {
+                height: 77px;
+            }
+
+            /* Hero/Banner */
+            .tournament-hero {
+                text-align: center;
+                margin: 0;
+                padding: 88px 0 30px 0;
+                background: linear-gradient(100deg, #7c3aed11 10%, #0a061830 100%);
+            }
+
+            .tournament-hero h2 {
+                font-size: 2.6rem;
+                font-weight: 900;
+                background: linear-gradient(90deg, #fff, #c084fc);
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+                letter-spacing: 2px;
+                margin-bottom: 12px;
+                filter: drop-shadow(0 5px 28px #8b5cf63c);
+            }
+
+            .tournament-hero p {
+                max-width: 650px;
+                margin: 10px auto 16px;
+                color: #e5dcfc;
+                font-size: 1.21rem;
+            }
+
+            .tournament-date {
+                color: #ffb347;
+                font-size: 1.18rem;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+
+            .tournament-badge {
+                display: inline-block;
+                color: #fff;
+                font-size: 1.02rem;
+                margin-top: 8px;
+                background: #8b5cf6;
+                border-radius: 8px;
+                padding: 5px 18px;
+                font-weight: 700;
+                box-shadow: 0 4px 18px #8b5cf635;
+                letter-spacing: 0.5px;
+            }
+
+            /* Main Info Card */
+            .main-glass {
+                margin: 34px auto 0 auto;
+                background: linear-gradient(122deg, rgba(255, 255, 255, 0.13), rgba(124, 58, 237, 0.03));
+                border: 1.8px solid #9b6dfd4c;
+                border-radius: 24px;
+                box-shadow: var(--shadow);
+                padding: 34px 20px;
+                max-width: 960px;
+                position: relative;
+                overflow: hidden;
+                animation: glassPop 1s cubic-bezier(.2, .74, .45, 1.2);
+            }
+
+            @keyframes glassPop {
+                from {
+                    opacity: 0;
+                    transform: scale(0.98) translateY(36px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: none;
+                }
+            }
+
+            .main-glass h3 {
+                font-weight: 900;
+                font-size: 1.45rem;
+                background: linear-gradient(90deg, #fff, #c084fc);
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+                margin-bottom: 14px;
+            }
+
+            .main-glass ul {
+                margin: 12px 0 19px 0;
+                padding-left: 18px;
+                color: #e5e1fc;
+                font-size: 1.05rem;
+            }
+
+            .main-glass li {
+                margin-bottom: 8px;
+                line-height: 1.34;
+            }
+
+            .register-col {
+                background: linear-gradient(102deg, #c084fc34, #120e4348);
+                border-radius: 17px;
+                padding: 30px 18px;
+                margin-left: auto;
+                width: 350px;
+                box-shadow: 0 4px 18px #8b5cf61a, 0 6px 28px #4b268d22;
+                font-size: 1.11rem;
+            }
+
+            .register-col h4 {
+                margin-bottom: 10px;
+                color: #fff;
+            }
+
+            .register-btn {
+                margin-top: 13px;
+                padding: 14px 32px;
+                border-radius: 23px;
+                font-size: 1.18rem;
+                background: linear-gradient(90deg, #7c3aed, #8b5cf6);
+                color: #fff;
+                font-weight: bold;
+                letter-spacing: .7px;
+                border: none;
+                box-shadow: 0 7px 18px #7c3aed35;
+                transition: .16s;
+                cursor: pointer;
+                display: inline-block;
+            }
+
+            .register-btn:hover {
+                box-shadow: 0 22px 38px #8b5cf669;
+                background: linear-gradient(90deg, #faf5ff, #c084fc);
+                color: #3b2a7c;
+            }
+
+            /* Rules Cards */
+            .rules-section {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 26px;
+                margin: 38px auto 0 auto;
+                max-width: 1000px;
+            }
+
+            .rule-card {
+                background: linear-gradient(100deg, rgba(255, 255, 255, 0.09), rgba(124, 58, 237, 0.04));
+                border: 1.3px solid #bfa4fc2a;
+                border-radius: 18px;
+                padding: 21px 18px;
+                box-shadow: 0 7px 24px #7c3aed18;
+                min-width: 220px;
+                max-width: 340px;
+                flex: 1 1 225px;
+                transition: .22s;
+                text-align: left;
+                position: relative;
+            }
+
+            .rule-card:hover {
+                transform: translateY(-7px) rotateY(-8deg) scale(1.03);
+                box-shadow: 0 18px 36px #7c3aed38;
+            }
+
+            .rule-card .ic {
+                font-size: 1.88rem;
+                color: #c084fc;
+                margin-right: 11px;
+                vertical-align: middle;
+            }
+
+            .rule-card h5 {
+                margin: 0 0 9px 0;
+                font-size: 1.13rem;
+                color: #faf7ff;
+            }
+
+            .rule-card ul {
+                margin: 0;
+                padding-left: 21px;
+                font-size: 1rem;
+                color: #e7e0fa;
+            }
+
+            .rule-card li {
+                margin-bottom: 4px;
+            }
+
+            /* Notes/Important */
+            .notes {
+                margin: 44px auto 0 auto;
+                max-width: 570px;
+                background: rgba(255, 255, 255, 0.09);
+                border-radius: 14px;
+                padding: 18px 18px 15px;
+                font-size: 1.13rem;
+                border-left: 4px solid #8b5cf6;
+                box-shadow: 0 6px 30px #4b268d17;
+                color: #f3eefa;
+            }
+
+            .notes strong {
+                color: #fdffb8;
+            }
+
+            /* Footer - modern glassmorphism */
+
+            footer {
+                background: transparent;
+                margin-top: 60px;
+                position: relative;
+                z-index: 2;
+            }
+
+            .footer-content {
+                max-width: 1100px;
+                margin: 0 auto 0 auto;
+                padding: 0 18px 22px 18px;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 32px;
+                background: rgba(40, 16, 80, 0.26);
+                border-radius: 28px;
+                box-shadow: 0 12px 52px #b587fa36, 0 2px 22px #a666fa26;
+                backdrop-filter: blur(10px) saturate(118%);
+                border: 1.8px solid #7c3aed33;
+                margin-bottom: 0;
+                position: relative;
+                top: -22px;
+                animation: glassPulse 5s infinite alternate;
+            }
+
+            @keyframes glassPulse {
+                0% {
+                    box-shadow: 0 12px 52px #b587fa36, 0 2px 22px #a666fa18;
+                }
+
+                100% {
+                    box-shadow: 0 18px 74px #a877ff48;
+                }
+            }
+
+            .footer-section h3 {
+                color: #fff;
+                margin-bottom: 11px;
+            }
+
+            .footer-section p,
+            .footer-section a {
+                color: #bfb8e7;
+                font-size: 1rem;
+                line-height: 1.45;
+                margin: 0;
+            }
+
+            .footer-section a {
+                text-decoration: none;
+            }
+
+            .footer-section a:hover {
+                color: #fff;
+            }
+
+            .social-icons {
+                margin-top: 16px;
+                display: flex;
+                gap: 18px;
+            }
+
+            .social-icons a {
+                width: 44px;
+                height: 44px;
+                display: grid;
+                place-items: center;
+                background: linear-gradient(180deg, #8b5cf6, #7c3aed);
+                color: #fff;
+                border-radius: 50%;
+                border: 1.5px solid #fff2;
+                box-shadow: 0 8px 24px #c084fc2a;
+                font-size: 1.2rem;
+                transition: .15s;
+            }
+
+            .social-icons a:hover {
+                transform: translateY(-5px) scale(1.07);
+            }
+
+            .footer-bottom {
+                margin-top: 8px;
+                text-align: center;
+                color: #bebefc;
+            }
+
+            @media (max-width:700px) {
+                .footer-content {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <nav class="container">
+                <div class="nav-logo">
+                    <img src="c:\Users\LOG IN\OneDrive\Pictures\New folder (2)\images\bglogo.png"
+                        alt="FictrEsports Logo"
+                        style="max-width:180px; width: 100%; height: auto; background: transparent; object-fit: contain;" />
+                </div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="howitworks.html">How It Works</a></li>
+                    <li><a href="tournaments.html">Tournaments</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+
+                </ul>
+                <span class="mobile-menu" id="mobileMenu"><i class="fas fa-bars"></i></span>
+                <script>
+                    function toggleMenu() {
+                        var navLinks = document.getElementById('navLinks');
+                        navLinks.classList.toggle('active');
+                        var menuIcon = document.getElementById('mobileMenu').querySelector('i');
+                        menuIcon.className = navLinks.classList.contains('active') ? 'fas fa-times' : 'fas fa-bars';
+                    }
+                    function enableMobileMenu() {
+                        if (window.innerWidth < 700) {
+                            document.getElementById('navLinks').classList.remove('active');
+                            document.getElementById('mobileMenu').style.display = 'block';
+                        } else {
+                            document.getElementById('navLinks').classList.remove('active');
+                            document.getElementById('mobileMenu').style.display = 'none';
+                        }
+                    }
+                    window.addEventListener('resize', enableMobileMenu);
+                    document.getElementById('mobileMenu').onclick = toggleMenu;
+                    window.onload = enableMobileMenu;
+                </script>
+            </nav>
+        </header>
+        <div class="header-space"></div>
+
+        <!-- Hero/Banner Section -->
         <section class="tournament-hero">
             <div class="container">
                 <h2>All India Free Fire Tournament</h2>
-                <div class="tournament-date">1 March 2026 | Sunday | Squad Mode</div>
-                <p>Join the biggest weekly esports event powered by Fictr Esports.<br> Every week, stay tuned for updated matches and formats.<br> <b>Prize Pool, Rules, Payment & Eligibility changes weekly!</b></p>
+                <div class="tournament-date">🗓 1 March 2026 (Sunday) | Mode: Squad</div>
+                <span class="tournament-badge">Open To All — Across India</span>
+                <p>
+                    Join the biggest weekly esports event — powered by Fictr Esports.<br>
+                    Every week, stay tuned for updated matches and formats.<br>
+                    <b>Prize Pool, Rules, Payment & Eligibility changes weekly!</b>
+                </p>
             </div>
         </section>
+
+        <!-- Registration and Info -->
         <div class="container main-glass">
-            <h3>Registration Format</h3>
+            <h3>Registration & Format</h3>
             <ul>
                 <li><strong>Game:</strong> Garena Free Fire</li>
                 <li><strong>Mode:</strong> Squad (4 players min, 5 max)</li>
-                <li><strong>Match Date:</strong> 1 March 2026, Sunday</li>
+                <li><strong>Match Date:</strong> 1 March 2026 (Sunday)</li>
                 <li><strong>Entry Fee:</strong> ₹50 per player (non-refundable)</li>
-                <li><strong>Prize Pool:</strong> ₹2,000 (1st, 2nd, 3rd - fully sponsored!)</li>
+                <li><strong>Total Prize Pool:</strong> ₹2000+ (split 1st/2nd/3rd) — fully sponsored!</li>
                 <li><strong>Location:</strong> All over India (Online Tournament)</li>
-                <li><strong>Updated weekly -</strong> Check this page for latest event info</li>
+                <li><strong>Updated every week</strong> — check this page for latest event & registration info.</li>
             </ul>
-            <a href="https://www.instagram.com/scalerofficial" target="_blank" class="register-btn">Register Now</a>
+            <div style="margin:20px 0;">
+                <a href="https://www.instagram.com/scaler_official/" target="_blank" class="register-btn">Register
+                    Now</a>
+            </div>
+            <div class="register-col" style="float:right;">
+                <h4>Highlights</h4>
+                <ul>
+                    <li>Highest Kills Awarded</li>
+                    <li>Top 3 get prize, certificate & feature</li>
+                    <li>Match streamed live (YouTube/Discord)</li>
+                    <li>Fair-play, team support & pro admin staff</li>
+                    <li>Get instant updates on WhatsApp</li>
+                </ul>
+                <div style="margin-top:16px;">
+                    Team Fee for this event: <b>₹199 (refundable if not selected)</b><br>
+                    <span style="font-size:.96rem;color:#c6affd;">(Remaining to be paid post-selection)</span>
+                </div>
+            </div>
+            <div style="clear:both;"></div>
         </div>
+
+        <!-- Rules 3-Column Cards Section -->
         <div class="container rules-section">
             <div class="rule-card">
-                <h5>⚖️ Rules & Fair Play</h5>
+                <span class="ic"><i class="fas fa-user-shield"></i></span>
+                <h5>Rules & Fair Play</h5>
                 <ul>
-                    <li>No cheats, hacks or scripts - instant ban</li>
+                    <li>No cheats, hacks or scripts — instant ban</li>
                     <li>Respect admins, staff & fellow players</li>
-                    <li>Account level min 35, Diamond 200</li>
-                    <li>Only mobile devices - no emulators allowed</li>
+                    <li>Account level min 35, diamond ≥200</li>
+                    <li>Only mobile devices (no emulators allowed)</li>
                 </ul>
             </div>
             <div class="rule-card">
-                <h5>🏆 Prizes & Awards</h5>
+                <span class="ic"><i class="fas fa-trophy"></i></span>
+                <h5>Prizes & Awards</h5>
                 <ul>
-                    <li>1st: ₹1,000 | 2nd: ₹700 | 3rd: ₹300</li>
+                    <li>1st: ₹1000, 2nd: ₹700, 3rd: ₹300</li>
                     <li>Certificates for Top 3</li>
                     <li>Special mention for Most Kills</li>
-                    <li>Booyah bonus - Free next week entry!</li>
+                    <li>Booyah bonus: Free next week entry</li>
                 </ul>
             </div>
             <div class="rule-card">
-                <h5>📋 Format & Selection</h5>
+                <span class="ic"><i class="fas fa-poll"></i></span>
+                <h5>Format & Selection</h5>
                 <ul>
                     <li>Teams seeded by random draw</li>
-                    <li>2 rounds: Qualifiers & Finals</li>
-                    <li>Top 25 advance per round</li>
-                    <li>Updated via WhatsApp & Email always</li>
+                    <li>2 rounds: Qualifiers > Finals</li>
+                    <li>Top 25% advance per round</li>
+                    <li>Updated WhatsApp/Email notices always</li>
                 </ul>
             </div>
         </div>
-    </main>
-    <footer>
-        <div class="container footer-content">
-            <div class="footer-section">
-                <h3>Fictr Esports</h3>
-                <p>Organizing the future of Indian esports with competitive gaming events, tournaments, and player support across India.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <p><a href="index.html">Home</a></p>
-                <p><a href="about.html">About Us</a></p>
-                <p><a href="Howitworks.html">How It Works</a></p>
-                <p><a href="tournaments.html">Tournaments</a></p>
-                <p><a href="contact.html">Contact</a></p>
-            </div>
-            <div class="footer-section">
-                <h3>Contact Info</h3>
-                <p>Based in India</p>
-                <p>Email: syedliyaqatsareer5@gmail.com</p>
-                <p>Phone: +91 9797299517</p>
-            </div>
+
+        <!-- Notes/Important Section -->
+        <div class="container notes" style="margin-bottom:36px;">
+            <b>Note:</b> <br>
+            Match date, prize pool and rules <strong>change weekly</strong> based on sponsor updates.<br>
+            <b>For next week's event:</b> Just update details above and publish.<br>
+            <em>Any technical issues, contact admin via WhatsApp or Discord.</em>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Fictr Esports. All rights reserved.</p>
-        </div>
-    </footer>
-</body>
+
+        <!-- Footer: glassmorphism, 3 columns, icons, responsive -->
+        <footer id="contact">
+            <div class="container footer-content">
+                <div class="footer-section">
+                    <h3>Fictr Esports</h3>
+                    <p>Organizing the future of Indian esports with competitive gaming events, tournaments, and player
+                        support across India.</p>
+
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="index.html">Home</a></p>
+                    <p><a href="about.html">About Us</a></p>
+                    <p><a href="Howitworks.html">How It Works</a></p>
+                    <p><a href="tournaments.html">Tournaments</a></p>
+                    <p><a href="contact.html">Contact</a></p>
+
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p>Based in India</p>
+                    <p>Email: syedliyaqatsareer5@gmail.com</p>
+
+                    <p>Phone: +91 9797299517 </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Fictr Esports. All rights reserved.</p>
+            </div>
+        </footer>
+    </body>
+
 </html>
